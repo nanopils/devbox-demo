@@ -11,9 +11,9 @@ NC='\033[0m' # No Color
 
 # Print functions
 print_header() {
-  echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${BLUE}║         k6 Load Testing - Dependency Installer             ║${NC}"
-  echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+  echo -e "${BLUE}╔══════════════════════════════════════════╗${NC}"
+  echo -e "${BLUE}║         Dependency Installer             ║${NC}"
+  echo -e "${BLUE}╚══════════════════════════════════════════╝${NC}"
   echo ""
 }
 
@@ -214,7 +214,7 @@ configure_direnv_hook() {
 
     # Add hook (idempotent)
     echo "" >>"$config_file"
-    echo "# direnv hook (added by k6 install script)" >>"$config_file"
+    echo "# direnv hook (added by install script)" >>"$config_file"
     echo "$hook_line" >>"$config_file"
 
     print_success "direnv hook added to $config_file"
@@ -230,7 +230,7 @@ configure_direnv_hook() {
 
     # Add devbox global shellenv
     echo "" >>"$config_file"
-    echo "# Enable devbox globally (added by k6 install script)" >>"$config_file"
+    echo "# Enable devbox globally (added by install script)" >>"$config_file"
     echo "$devbox_line" >>"$config_file"
 
     print_success "devbox global shellenv added to $config_file"
@@ -304,20 +304,13 @@ main() {
   print_info "Next steps:"
   echo "  1. Restart your shell or run: source $(get_shell_config $(detect_shell))"
   echo "  2. Navigate to the project directory"
-  echo "  3. Run: cp .env.example .env"
-  echo "  4. Edit .env with your credentials"
-  echo "  5. Run: direnv allow"
+  echo "  3. Run: direnv allow"
   echo "     (This allows direnv to automatically load the environment)"
+  echo "  4. Edit .env with your credentials"
   echo ""
   print_warning "Note: With direnv configured, you DON'T need to run 'devbox shell'!"
   print_info "      The environment activates automatically when you cd into the directory."
   echo ""
-  print_info "To run tests:"
-  echo "  • devbox run test:web:smoke"
-  echo "  • devbox run test:api"
-  echo "  • devbox run test:pos"
-  echo ""
-  print_info "For more information, see QUICKSTART.md or README.md"
 }
 
 # Run main function
